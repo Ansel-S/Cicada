@@ -1,5 +1,5 @@
 {
-  "name": "Cicada Whiteboard",
+  "name": "Cicada: Minimalist Whiteboard",
   "private": true,
   "version": "1.0.0",
   "type": "module",
