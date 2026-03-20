@@ -1,0 +1,35 @@
+name: Vibe Deploy
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1. Get Source Code
+        uses: actions/checkout@v4
+
+      - name: 2. Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 3. Install Dependencies & Build
+        run: |
+          npm install
+          npm run build
+
+      - name: 4. Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist    # Vite 默认打包产物在 dist 文件夹
+          branch: gh-pages # 部署到 gh-pages 分支
