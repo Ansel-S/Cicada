@@ -1,8 +1,17 @@
 import { defineConfig } from "vite";
 import { viteSingleFile } from "vite-plugin-singlefile";
+import { ViteMinifyPlugin } from 'vite-plugin-minify';
 
 export default defineConfig({
-    plugins: [viteSingleFile()],
+    plugins: [
+        viteSingleFile(),
+        ViteMinifyPlugin({
+            collapseWhitespace: true,
+            removeComments: true,
+            minifyCSS: true,
+            minifyJS: true,
+        }),
+    ],
     build: {
         target: "esnext",
         assetsInlineLimit: 100000000,
